@@ -10,7 +10,7 @@
             "contains": "application/json"
           }
         },
-        "bodyPatterns:": [
+        "bodyPatterns": [
           {
             "matchesJsonPath": "$.param1"
           },
@@ -41,7 +41,7 @@
             "contains": "application/json"
           }
         },
-        "bodyPatterns:": [
+        "bodyPatterns": [
           {
             "matchesJsonPath": {
               "expression": "$.param1",
