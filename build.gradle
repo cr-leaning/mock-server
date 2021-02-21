@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'com.nekose'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('com.github.tomakehurst:wiremock-standalone:2.27.2')
+}
+
+test {
+    useJUnitPlatform()
+}

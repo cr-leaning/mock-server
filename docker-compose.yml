@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mock:
+#    container_name: mock-server
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+    image: rodolpheche/wiremock:latest
+    ports:
+      - "9999:8080"
+    volumes:
+      - ./stubs:/home/wiremock

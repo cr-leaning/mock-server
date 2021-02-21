@@ -1,0 +1,50 @@
+{
+  "mappings": [
+    {
+      "name": "test get method success",
+      "request": {
+        "method": "GET",
+        "urlPath": "/test/getMethod",
+        "queryParameters": {
+          "testParam": {
+            "matches": "(.*)"
+          }
+        },
+        "headers": {}
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "jsonBody": {
+          "testParam": "{{request.query.testParam}}",
+          "id": "id_{{randomValue length=10 type='ALPHANUMERIC'}}"
+        },
+        "fixedDelayMilliseconds": 3000
+      }
+    },
+    {
+      "name": "test get method error",
+      "request": {
+        "method": "GET",
+        "urlPath": "/test/getMethod",
+        "queryParameters": {
+          "testParam": {
+            "matches": "error(.*)"
+          }
+        },
+        "headers": {}
+      },
+      "response": {
+        "status": 400,
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "jsonBody": {
+        },
+        "fixedDelayMilliseconds": 3000
+      }
+    }
+  ]
+}

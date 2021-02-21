@@ -1,0 +1,72 @@
+{
+  "mappings": [
+    {
+      "name": "test post method success",
+      "request": {
+        "method": "POST",
+        "urlPath": "/test/getMethod",
+        "headers": {
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        },
+        "bodyPatterns:": [
+          {
+            "matchesJsonPath": "$.param1"
+          },
+          {
+            "matchesJsonPath": "$.param2"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "jsonBody": {
+          "testParam": "{{jsonPath request.body '$.param1'}}",
+          "id": "id_{{randomValue length=10 type='ALPHANUMERIC'}}"
+        },
+        "fixedDelayMilliseconds": 3000
+      }
+    },
+    {
+      "name": "test post method error",
+      "request": {
+        "method": "POST",
+        "urlPath": "/test/getMethod",
+        "headers": {
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        },
+        "bodyPatterns:": [
+          {
+            "matchesJsonPath": {
+              "expression": "$.param1",
+              "equalTo": "400"
+            }
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$.param2",
+              "contains": "400"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "jsonBody": {
+          "testParam": "{{jsonPath request.body '$.param1'}}",
+          "id": "id_{{randomValue length=10 type='ALPHANUMERIC'}}"
+        },
+        "fixedDelayMilliseconds": 3000
+      }
+    }
+  ]
+}
