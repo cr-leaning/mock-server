@@ -1,0 +1,61 @@
+{
+  "mappings": [
+    {
+      "name": "dummyApi get method success",
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/dummy/v1/dummyApi/(.+)",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer (.+)"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "name": "test name",
+          "value": "test value"
+        },
+        "fixedDelayMilliseconds": 3000
+      }
+    },
+    {
+      "name": "dummyApi post method success",
+      "request": {
+        "method": "POST",
+        "urlPathPattern": "/dummy/v1/dummyApi/(.+)",
+        "headers": {
+          "Content-Type": {
+            "contains": "application/json"
+          },
+          "Authorization": {
+            "matches": "Bearer (.+)"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.name"
+          },
+          {
+            "matchesJsonPath": "$.value"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "jsonBody": {
+          "name": "updated test name",
+          "value": "updated test value"
+        },
+        "fixedDelayMilliseconds": 3000
+      }
+    }
+  ]
+}
